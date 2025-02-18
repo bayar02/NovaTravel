@@ -47,34 +47,34 @@ public class SignupController {
         String userMail = mail.getText().trim();
         String userPassword = password.getText();
         String confirmUserPassword = confirmPassword.getText();
-        
+
         // Validate all fields
-        if (userCin.isEmpty() || userNom.isEmpty() || userPrenom.isEmpty() || 
-            userTel.isEmpty() || userMail.isEmpty() || userPassword.isEmpty() || 
-            confirmUserPassword.isEmpty()) {
+        if (userCin.isEmpty() || userNom.isEmpty() || userPrenom.isEmpty() ||
+                userTel.isEmpty() || userMail.isEmpty() || userPassword.isEmpty() ||
+                confirmUserPassword.isEmpty()) {
             showError("Veuillez remplir tous les champs");
             return;
         }
-        
+
         if (!ValidationService.isValidEmail(userMail)) {
             showError("Format d'email invalide");
             return;
         }
-        
+
         if (!ValidationService.isValidPassword(userPassword)) {
             showError("Le mot de passe doit contenir au moins 8 caractères");
             return;
         }
-        
+
         if (!userPassword.equals(confirmUserPassword)) {
             showError("Les mots de passe ne correspondent pas");
             return;
         }
-        
+
         try {
             // Create new user with REGULAR_USER role
             User newUser = new User(userCin, userNom, userPrenom, userTel, userMail, userPassword, User.Role.REGULAR_USER);
-            
+
             if (userService.register(newUser)) {
                 // Registration successful, redirect to login
                 goToLogin(event);
@@ -109,4 +109,4 @@ public class SignupController {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
     }
-} 
+}

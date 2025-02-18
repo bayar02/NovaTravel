@@ -49,7 +49,7 @@ public class AdminDashboardController implements Initializable {
         telColumn.setCellValueFactory(new PropertyValueFactory<>("tel"));
         mailColumn.setCellValueFactory(new PropertyValueFactory<>("mail"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
-        
+
         setupActionsColumn();
         loadUsers();
     }
@@ -91,10 +91,10 @@ public class AdminDashboardController implements Initializable {
     private void handleSearch() {
         String searchText = searchField.getText().toLowerCase();
         ObservableList<User> filteredList = userList.filtered(user ->
-            user.getNom().toLowerCase().contains(searchText) ||
-            user.getPrenom().toLowerCase().contains(searchText) ||
-            user.getMail().toLowerCase().contains(searchText) ||
-            user.getCin().toLowerCase().contains(searchText)
+                user.getNom().toLowerCase().contains(searchText) ||
+                        user.getPrenom().toLowerCase().contains(searchText) ||
+                        user.getMail().toLowerCase().contains(searchText) ||
+                        user.getCin().toLowerCase().contains(searchText)
         );
         userTable.setItems(filteredList);
     }
@@ -153,4 +153,4 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
-} 
+}
