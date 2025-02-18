@@ -43,8 +43,7 @@ public class UserFormController {
             tel.setText(user.getTel());
             mail.setText(user.getMail());
             role.setValue(user.getRole().toString());
-            // Set the password if the user is not null
-            // (Note: You might want to hide the password field for existing users, depending on your use case)
+
         }
     }
 
