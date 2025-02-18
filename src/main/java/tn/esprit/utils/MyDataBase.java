@@ -16,11 +16,11 @@ import java.sql.SQLException;
 public class MyDataBase {
     private static MyDataBase instance;
     private Connection connection;
-    
+
     private static final String URL = "jdbc:mysql://localhost:3306/nova_travel";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
+
     private MyDataBase() {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -29,21 +29,21 @@ public class MyDataBase {
             System.err.println("Error connecting to Database: " + e.getMessage());
         }
     }
-    
+
     public static MyDataBase getInstance() {
         if (instance == null) {
             instance = new MyDataBase();
         }
         return instance;
     }
-    
+
     public Connection getConnection() {
         return connection;
     }
-    
+
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String email) {
         Parent root = null;
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(MyDataBase.class.getResource("/" + fxmlFile));
             root = loader.load();
