@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="689.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.SignupController">
+   <children>
+      <ImageView fitHeight="789.0" fitWidth="1158.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@bg.jpeg" />
+         </image>
+      </ImageView>
+      <StackPane alignment="CENTER" layoutX="0" layoutY="0" prefHeight="689.0" prefWidth="938.0">
+         <children>
+            <VBox styleClass="form-container" maxWidth="400" spacing="20" alignment="TOP_CENTER">
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@LOGO.png" />
+                  </image>
+                  <effect>
+                     <Glow />
+                  </effect>
+               </ImageView>
+               
+               <Label styleClass="form-header" text="Inscription" />
+               
+               <VBox styleClass="input-container">
+                  <TextField fx:id="cin" promptText="CIN" styleClass="text-field" />
+                  <TextField fx:id="nom" promptText="Nom" styleClass="text-field" />
+                  <TextField fx:id="prenom" promptText="Prénom" styleClass="text-field" />
+                  <TextField fx:id="tel" promptText="Téléphone" styleClass="text-field" />
+                  <TextField fx:id="mail" promptText="Email" styleClass="text-field" />
+                  <PasswordField fx:id="password" promptText="Mot de passe" styleClass="text-field" />
+                  <PasswordField fx:id="confirmPassword" promptText="Confirmer mot de passe" styleClass="text-field" />
+                  <Label fx:id="errorLabel" styleClass="error-message" visible="false" />
+               </VBox>
+               
+               <Button onAction="#handleSignup" styleClass="custom-button" text="S'inscrire" />
+               
+               <Hyperlink onAction="#goToLogin" styleClass="custom-link" text="Déjà inscrit? Se connecter" />
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
