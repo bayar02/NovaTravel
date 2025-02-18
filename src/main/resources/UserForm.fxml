@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.UserFormController">
+    <children>
+        <!-- Background Image -->
+        <ImageView fitHeight="700.0" fitWidth="940.0" pickOnBounds="true" preserveRatio="false">
+            <image>
+                <Image url="@bg.jpeg" />
+            </image>
+        </ImageView>
+
+        <!-- Centered Form -->
+        <StackPane alignment="CENTER" prefHeight="700.0" prefWidth="940.0">
+            <children>
+                <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-padding: 30px; -fx-background-radius: 10px; -fx-border-color: #ddd; -fx-border-radius: 10px; -fx-border-width: 1px;">
+
+                    <!-- Logo -->
+                    <ImageView fitHeight="100.0" fitWidth="100.0">
+                        <image>
+                            <Image url="@nova_travel.png" />
+                        </image>
+                        <effect>
+                            <Glow />
+                        </effect>
+                    </ImageView>
+
+                    <!-- Title -->
+                    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Modifier Utilisateur" />
+
+                    <!-- Input Fields -->
+                    <VBox alignment="CENTER" spacing="10">
+                        <TextField fx:id="cin" promptText="CIN" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+                        <TextField fx:id="nom" promptText="Nom" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+                        <TextField fx:id="prenom" promptText="Prénom" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+                        <TextField fx:id="tel" promptText="Téléphone" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+                        <TextField fx:id="mail" promptText="Email" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+                        <PasswordField fx:id="password" promptText="Password" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+
+                        <ChoiceBox fx:id="role" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+                        <Label fx:id="errorLabel" style="-fx-text-fill: red; -fx-font-size: 12px;" text="Erreur" visible="false" />
+                    </VBox>
+
+                    <!-- Buttons -->
+                    <HBox alignment="CENTER" spacing="15">
+                        <Button fx:id="save" onAction="#handleSave" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 120px;" text="Enregistrer" />
+                        <Button fx:id="cancel" onAction="#handleCancel" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 120px;" text="Annuler" />
+                    </HBox>
+                </VBox>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

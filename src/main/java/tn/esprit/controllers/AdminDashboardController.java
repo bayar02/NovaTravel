@@ -100,8 +100,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     private void handleEditUser(User user) {
-        // TODO: Implement edit user functionality
-        System.out.println("Editing user: " + user.getId());
+        openUserForm(user);  // Open form with selected user for editing
     }
 
     private void handleDeleteUser(User user) {
@@ -120,8 +119,7 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private void handleAddUser() {
-        // TODO: Implement add user functionality
-        System.out.println("Adding new user");
+        openUserForm(null);  // Open form with no user (new user)
     }
 
     @FXML
@@ -136,4 +134,23 @@ public class AdminDashboardController implements Initializable {
             e.printStackTrace();
         }
     }
+    private void openUserForm(User user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserForm.fxml"));
+            Parent root = loader.load();
+
+            UserFormController controller = loader.getController();
+            controller.setUser(user);
+
+            Stage stage = new Stage();
+            stage.setTitle(user == null ? "Ajouter Utilisateur" : "Modifier Utilisateur");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            loadUsers(); // Refresh table after adding/editing
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 } 
