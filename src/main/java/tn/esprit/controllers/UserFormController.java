@@ -6,6 +6,9 @@ import javafx.stage.Stage;
 import tn.esprit.entities.User;
 import tn.esprit.services.UserService;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class UserFormController {
     @FXML private TextField cin;
     @FXML private TextField nom;
@@ -47,10 +50,9 @@ public class UserFormController {
 
     @FXML
     private void handleSave() {
-        if (cin.getText().isEmpty() || nom.getText().isEmpty() ||
-                prenom.getText().isEmpty() || tel.getText().isEmpty() ||
-                mail.getText().isEmpty() || role.getValue() == null || password.getText().isEmpty()) { // Check if password is empty
-            errorLabel.setText("Tous les champs doivent être remplis !");
+        String errorMessage = validateForm();
+        if (errorMessage != null) {
+            errorLabel.setText(errorMessage);
             errorLabel.setVisible(true);
             return;
         }
@@ -79,5 +81,34 @@ public class UserFormController {
     @FXML
     private void handleCancel() {
         ((Stage) cancel.getScene().getWindow()).close();
+    }
+
+    private String validateForm() {
+        // Check if any required fields are empty
+        if (cin.getText().isEmpty() || nom.getText().isEmpty() ||
+                prenom.getText().isEmpty() || tel.getText().isEmpty() ||
+                mail.getText().isEmpty() || role.getValue() == null || password.getText().isEmpty()) {
+            return "Tous les champs doivent être remplis !";
+        }
+
+        // Validate CIN (must be 8 digits)
+        if (!cin.getText().matches("\\d{8}")) {
+            return "Le CIN doit contenir exactement 8 chiffres.";
+        }
+
+        // Validate email (simple regex to check basic email format)
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(mail.getText());
+        if (!matcher.matches()) {
+            return "L'email doit être valide.";
+        }
+
+        // Validate password (must be at least 8 characters)
+        if (password.getText().length() < 8) {
+            return "Le mot de passe doit contenir au moins 8 caractères.";
+        }
+
+        return null; // Return null if no errors
     }
 }

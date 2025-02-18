@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AdminDashboardController implements Initializable {
     @FXML private TableView<User> userTable;
@@ -83,19 +84,28 @@ public class AdminDashboardController implements Initializable {
     private void loadUsers() {
         userList.clear();
         List<User> users = userService.getAll();
-        userList.addAll(users);
+
+        // Using Streams to process the list
+        userList.addAll(users.stream()
+                .collect(Collectors.toList()));  // Collect as list using Stream API
+
         userTable.setItems(userList);
     }
 
     @FXML
     private void handleSearch() {
         String searchText = searchField.getText().toLowerCase();
-        ObservableList<User> filteredList = userList.filtered(user ->
-                user.getNom().toLowerCase().contains(searchText) ||
-                        user.getPrenom().toLowerCase().contains(searchText) ||
-                        user.getMail().toLowerCase().contains(searchText) ||
-                        user.getCin().toLowerCase().contains(searchText)
+
+        // Using Stream to filter the list based on search criteria
+        ObservableList<User> filteredList = FXCollections.observableArrayList(
+                userList.stream()
+                        .filter(user -> user.getNom().toLowerCase().contains(searchText) ||
+                                user.getPrenom().toLowerCase().contains(searchText) ||
+                                user.getMail().toLowerCase().contains(searchText) ||
+                                user.getCin().toLowerCase().contains(searchText))
+                        .collect(Collectors.toList())
         );
+
         userTable.setItems(filteredList);
     }
 
@@ -134,6 +144,7 @@ public class AdminDashboardController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private void openUserForm(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserForm.fxml"));
@@ -152,5 +163,4 @@ public class AdminDashboardController implements Initializable {
             e.printStackTrace();
         }
     }
-
 }
