@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.controllers.ReclamationController">
+    <TableView fx:id="tableReclamations">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" />
+            <TableColumn fx:id="colUserId" text="User ID" />
+            <TableColumn fx:id="colDate" text="Date" />
+            <TableColumn fx:id="colType" text="Type" />
+            <TableColumn fx:id="colMessage" text="Message" />
+        </columns>
+    </TableView>
+</VBox>

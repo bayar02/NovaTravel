@@ -1,12 +1,13 @@
 package tn.esprit.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
 public interface IService<T> {
-    public void ajouter(T t);
-    public void modifier(T t);
-    public void supprimer(int id);
-    public T getOne(int id);
-    public List<T> getAll();
+    void ajouter(T t,int id) throws SQLException;
+    void modifier(T t)throws SQLException;
+    void supprimer(int id)throws SQLException;
+    List<T> afficher() throws SQLException;
+
 }

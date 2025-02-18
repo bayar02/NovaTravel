@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ReclamationController">
+    <!-- Main Layout: VBox to vertically stack elements -->
+    <VBox spacing="15" layoutX="20" layoutY="20" prefWidth="400">
+        <!-- TableView to display reclamations -->
+
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="rechercheField" promptText="Search..." />
+        </HBox>
+        <TableView fx:id="tableReclamations" prefHeight="200" prefWidth="380">
+            <columns>
+                <TableColumn fx:id="colType" text="Type" prefWidth="120" />
+                <TableColumn fx:id="colMessage" text="Message" prefWidth="150" />
+                <TableColumn fx:id="colDate" text="Date" prefWidth="110" />
+            </columns>
+        </TableView>
+
+        <!-- TextFields and TextArea for input -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Type:"/>
+            <TextField fx:id="txtType" promptText="Enter type" prefWidth="200"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Message:"/>
+            <TextArea fx:id="txtMessage" promptText="Enter your message" prefWidth="200" prefHeight="100"/>
+        </HBox>
+
+        <!-- Buttons for Add, Modify, Delete -->
+        <HBox spacing="20" alignment="CENTER">
+            <Button fx:id="btnAjouter" text="Add" onMouseClicked="#handleAjouter" prefWidth="80" />
+            <Button fx:id="btnModifier" text="Modify" onMouseClicked="#handleModifier" prefWidth="80" />
+            <Button fx:id="btnSupprimer" text="Delete" onMouseClicked="#handleSupprimer" prefWidth="80" />
+        </HBox>
+    </VBox>
+
+    <!-- Adding Padding to make the interface less cramped -->
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+</AnchorPane>

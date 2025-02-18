@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.controllers.ReponseController">
+    <TableView fx:id="tableResponses">
+        <columns>
+            <TableColumn fx:id="colResponseId" text="Response ID" />
+            <TableColumn fx:id="colResponseMessage" text="Message" />
+            <TableColumn fx:id="colResponseDate" text="Date" />
+        </columns>
+    </TableView>
+    <TextArea fx:id="textAreaResponse" promptText="Enter response message" />
+    <Button text="Add Response" onAction="#addResponse" />
+</VBox>
