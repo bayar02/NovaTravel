@@ -46,11 +46,17 @@
                <HBox alignment="CENTER_LEFT" spacing="10" />
 
                <Button onAction="#login" styleClass="primary-button" text="Se Connecter" />
+               <Hyperlink fx:id="forgotPasswordLink" text="Mot de passe oublié ?" onAction="#openForgotPassword" underline="true">
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+               </Hyperlink>
                <Hyperlink onAction="#goToSignup" text="Créer un compte" underline="true">
                   <font>
                      <Font size="10.0" />
                   </font>
                </Hyperlink>
+
                <StackPane.margin>
                   <Insets left="100.0" />
                </StackPane.margin>

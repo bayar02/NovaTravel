@@ -35,8 +35,10 @@ public class AdminDashboardController implements Initializable {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
+
     private final UserService userService = new UserService();
     private final ObservableList<User> userList = FXCollections.observableArrayList();
+    private final AdminController adminController = new AdminController(); // Initialize AdminController
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -131,7 +133,16 @@ public class AdminDashboardController implements Initializable {
 
     private void handleEditUser(User user) {
         openUserForm(user);
+
+        // Collect the updated information
+        String updatedInfo = "Name: " + user.getNom() + " " + user.getPrenom() +
+                "\nEmail: " + user.getMail() +
+                "\nRole: " + user.getRole();
+
+        // Notify the user about the update
+        adminController.notifyUserOfChanges(user, updatedInfo, false);  // false means it's an update, not deletion
     }
+
 
     private void handleDeleteUser(User user) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -143,9 +154,14 @@ public class AdminDashboardController implements Initializable {
             if (response == ButtonType.OK) {
                 userService.supprimer(user.getId());
                 loadUsers();
+
+                // Notify the user about the deletion
+                adminController.notifyUserOfChanges(user, null, true);  // true means it's deletion
             }
         });
     }
+
+
 
     @FXML
     private void handleAddUser() {
@@ -179,10 +195,15 @@ public class AdminDashboardController implements Initializable {
             stage.showAndWait();
 
             loadUsers();
+
+            // After editing, send an email with the updated user information
+            if (user != null) {
+                adminController.notifyUserOfChanges(user, "Vos informations ont été mises à jour.", false);            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     private void openUserForm2(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserForm2.fxml"));
@@ -197,6 +218,11 @@ public class AdminDashboardController implements Initializable {
             stage.showAndWait();
 
             loadUsers();
+
+            // After editing, send an email with the updated user information
+            if (user != null) {
+                adminController.notifyUserOfChanges(user, "Vos informations ont été mises à jour.", false);            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
