@@ -94,7 +94,7 @@ public class SignupController {
     @FXML
     public void goToLogin(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/signin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signin.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) mail.getScene().getWindow();
             stage.setScene(new Scene(root));

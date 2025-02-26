@@ -54,14 +54,18 @@ public class SigninController {
                 
                 // Navigate based on user role
                 String targetFxml = switch (user.getRole()) {
-                    case ADMIN -> "admin_dashboard.fxml";
-                    case REGULAR_USER -> "user_dashboard.fxml";
-                    default -> "home.fxml";
+                    case ADMIN -> "fxml/acceuil_admin.fxml";
+                    case REGULAR_USER -> "fxml/user_dashboard.fxml";
+                    default -> "fxml/home.fxml";
                 };
                 
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/" + targetFxml));
                     Parent root = loader.load();
+                    if (targetFxml.equals("fxml/user_dashboard.fxml")) {
+                        UserDashboardController controller = loader.getController();
+                        controller.setUserInformation(user.getMail()); // Pass user email to UserDashboardController
+                    }
                     Stage stage = (Stage) email.getScene().getWindow();
                     stage.setScene(new Scene(root));
                     stage.show();
@@ -81,7 +85,7 @@ public class SigninController {
     @FXML
     public void goToSignup(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/signup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signup.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) email.getScene().getWindow();
             stage.setScene(new Scene(root));

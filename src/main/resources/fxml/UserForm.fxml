@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.Glow?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.controllers.UserFormController"
+      spacing="20" styleClass="content-container" prefWidth="940" prefHeight="700">
+
+    <stylesheets>
+        <URL value="@../style.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Main Content -->
+    <VBox spacing="20">
+        <!-- Header -->
+        <HBox alignment="CENTER">
+            <Text styleClass="view-header" text="Modifier Utilisateur" style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <!-- Form Inputs -->
+        <VBox spacing="15" alignment="CENTER">
+            <TextField fx:id="cin" promptText="CIN" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+            <TextField fx:id="nom" promptText="Nom" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+            <TextField fx:id="prenom" promptText="Prénom" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+            <TextField fx:id="tel" promptText="Téléphone" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+            <TextField fx:id="mail" promptText="Email" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+            <PasswordField fx:id="password" promptText="Mot de passe" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+
+            <ChoiceBox fx:id="role" style="-fx-font-size: 14px; -fx-pref-width: 250px;" />
+
+            <Label fx:id="errorLabel" style="-fx-text-fill: red; -fx-font-size: 12px;" text="Erreur" visible="false" />
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="save" onAction="#handleSave" text="Enregistrer" styleClass="primary-button"/>
+            <Button fx:id="cancel" onAction="#handleCancel" text="Annuler" styleClass="danger-button"/>
+        </HBox>
+    </VBox>
+
+    <!-- Footer -->
+    <HBox alignment="CENTER" spacing="15" style="-fx-background-color: #34495E; -fx-padding: 20;">
+        <Text style="-fx-text-fill: white; -fx-font-size: 16px;" text="© 2025 User Management"/>
+    </HBox>
+</VBox>

@@ -2,15 +2,15 @@ package tn.esprit.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import tn.esprit.entities.User;
 import tn.esprit.services.UserService;
@@ -23,80 +23,101 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class AdminDashboardController implements Initializable {
-    @FXML private TableView<User> userTable;
-    @FXML private TableColumn<User, Integer> idColumn;
-    @FXML private TableColumn<User, String> cinColumn;
-    @FXML private TableColumn<User, String> nomColumn;
-    @FXML private TableColumn<User, String> prenomColumn;
-    @FXML private TableColumn<User, String> telColumn;
-    @FXML private TableColumn<User, String> mailColumn;
-    @FXML private TableColumn<User, User.Role> roleColumn;
-    @FXML private TableColumn<User, Void> actionsColumn;
+    @FXML private ListView<User> userListView;
     @FXML private TextField searchField;
+    @FXML
+    private Button backButton;
 
-    private UserService userService;
-    private ObservableList<User> userList;
+    @FXML
+    private void handleBack() {
+        System.out.println("Going back...");
+        // Example: Close the current window
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
+    }
+    private final UserService userService = new UserService();
+    private final ObservableList<User> userList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        userService = new UserService();
-        userList = FXCollections.observableArrayList();
-
-        // Initialize columns
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        cinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        telColumn.setCellValueFactory(new PropertyValueFactory<>("tel"));
-        mailColumn.setCellValueFactory(new PropertyValueFactory<>("mail"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
-
-        setupActionsColumn();
         loadUsers();
+        setupListViewCellFactory();
     }
 
-    private void setupActionsColumn() {
-        actionsColumn.setCellFactory(param -> new TableCell<>() {
+    private void setupListViewCellFactory() {
+        userListView.setCellFactory(param -> new ListCell<>() {
             private final Button editButton = new Button("Modifier");
             private final Button deleteButton = new Button("Supprimer");
-            private final HBox buttons = new HBox(5, editButton, deleteButton);
 
             {
+                editButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+                deleteButton.setStyle("-fx-background-color: #f44336; -fx-text-fill: white;");
+
                 editButton.setOnAction(event -> {
-                    User user = getTableView().getItems().get(getIndex());
-                    handleEditUser(user);
+                    User user = getItem();
+                    if (user != null) handleEditUser(user);
                 });
 
                 deleteButton.setOnAction(event -> {
-                    User user = getTableView().getItems().get(getIndex());
-                    handleDeleteUser(user);
+                    User user = getItem();
+                    if (user != null) handleDeleteUser(user);
                 });
             }
 
             @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : buttons);
+            protected void updateItem(User user, boolean empty) {
+                super.updateItem(user, empty);
+                if (empty || user == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    GridPane grid = new GridPane();
+                    grid.setHgap(10);
+                    grid.setPrefWidth(userListView.getWidth() - 20);
+
+                    Label nomLabel = createColumnLabel(user.getNom(), 100);
+                    Label prenomLabel = createColumnLabel(user.getPrenom(), 100);
+                    Label cinLabel = createColumnLabel(user.getCin(), 120);
+                    Label telLabel = createColumnLabel(user.getTel(), 120);
+                    Label emailLabel = createColumnLabel(user.getMail(), 200);
+                    Label roleLabel = createColumnLabel(user.getRole().toString(), 120);
+
+                    HBox buttonsBox = new HBox(10, editButton, deleteButton);
+                    GridPane.setHgrow(buttonsBox, Priority.NEVER);
+
+                    grid.add(nomLabel, 0, 0);
+                    grid.add(prenomLabel, 1, 0);
+                    grid.add(cinLabel, 2, 0);
+                    grid.add(telLabel, 3, 0);
+                    grid.add(emailLabel, 4, 0);
+                    grid.add(roleLabel, 5, 0);
+                    grid.add(buttonsBox, 6, 0);
+
+                    setText(null);
+                    setGraphic(grid);
+                }
             }
         });
+    }
+
+    private Label createColumnLabel(String text, double width) {
+        Label label = new Label(text);
+        label.setMinWidth(width);
+        label.setMaxWidth(width);
+        label.setStyle("-fx-padding: 5; -fx-border-color: lightgray; -fx-background-color: white;");
+        return label;
     }
 
     private void loadUsers() {
         userList.clear();
         List<User> users = userService.getAll();
-
-        // Using Streams to process the list
-        userList.addAll(users.stream()
-                .collect(Collectors.toList()));  // Collect as list using Stream API
-
-        userTable.setItems(userList);
+        userList.addAll(users);
+        userListView.setItems(userList);
     }
 
     @FXML
     private void handleSearch() {
         String searchText = searchField.getText().toLowerCase();
-
-        // Using Stream to filter the list based on search criteria
         ObservableList<User> filteredList = FXCollections.observableArrayList(
                 userList.stream()
                         .filter(user -> user.getNom().toLowerCase().contains(searchText) ||
@@ -105,12 +126,11 @@ public class AdminDashboardController implements Initializable {
                                 user.getCin().toLowerCase().contains(searchText))
                         .collect(Collectors.toList())
         );
-
-        userTable.setItems(filteredList);
+        userListView.setItems(filteredList);
     }
 
     private void handleEditUser(User user) {
-        openUserForm(user);  // Open form with selected user for editing
+        openUserForm(user);
     }
 
     private void handleDeleteUser(User user) {
@@ -129,15 +149,15 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private void handleAddUser() {
-        openUserForm(null);  // Open form with no user (new user)
+        openUserForm2(null);
     }
 
     @FXML
     private void handleLogout() {
         SessionManager.getInstance().clearSession();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/signin.fxml"));
-            Stage stage = (Stage) userTable.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/signin.fxml"));
+            Stage stage = (Stage) userListView.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -147,7 +167,7 @@ public class AdminDashboardController implements Initializable {
 
     private void openUserForm(User user) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserForm.fxml"));
             Parent root = loader.load();
 
             UserFormController controller = loader.getController();
@@ -158,7 +178,25 @@ public class AdminDashboardController implements Initializable {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            loadUsers(); // Refresh table after adding/editing
+            loadUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void openUserForm2(User user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserForm2.fxml"));
+            Parent root = loader.load();
+
+            UserFormController controller = loader.getController();
+            controller.setUser(user);
+
+            Stage stage = new Stage();
+            stage.setTitle(user == null ? "Ajouter Utilisateur" : "Modifier Utilisateur");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            loadUsers();
         } catch (IOException e) {
             e.printStackTrace();
         }

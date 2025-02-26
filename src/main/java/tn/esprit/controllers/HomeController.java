@@ -24,7 +24,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void handleLogout(ActionEvent event) {
-        MyDataBase.changeScene(event, "signin.fxml", "Login", null);
+        MyDataBase.changeScene(event, "fxml/signin.fxml", "Login", null);
     }
 
     public void setUserInformation(String email) {

@@ -16,7 +16,7 @@ public class UserFormController {
     @FXML private TextField tel;
     @FXML private TextField mail;
     @FXML private ChoiceBox<String> role;
-    @FXML private PasswordField password; // Added PasswordField
+    @FXML private PasswordField password;
     @FXML private Button save;
     @FXML private Button cancel;
     @FXML private Label errorLabel;
@@ -66,7 +66,7 @@ public class UserFormController {
         user.setTel(tel.getText());
         user.setMail(mail.getText());
         user.setRole(User.Role.valueOf(role.getValue()));
-        user.setPassword(password.getText()); // Set the password field
+        user.setPassword(password.getText());
 
         if (user.getId() == 0) {
             userService.ajouter(user);
@@ -83,7 +83,6 @@ public class UserFormController {
     }
 
     private String validateForm() {
-        // Check if any required fields are empty
         if (cin.getText().isEmpty() || nom.getText().isEmpty() ||
                 prenom.getText().isEmpty() || tel.getText().isEmpty() ||
                 mail.getText().isEmpty() || role.getValue() == null || password.getText().isEmpty()) {
@@ -95,7 +94,7 @@ public class UserFormController {
             return "Le CIN doit contenir exactement 8 chiffres.";
         }
 
-        // Validate email (simple regex to check basic email format)
+        // Validate email
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(mail.getText());
@@ -108,6 +107,6 @@ public class UserFormController {
             return "Le mot de passe doit contenir au moins 8 caractères.";
         }
 
-        return null; // Return null if no errors
+        return null;
     }
 }
