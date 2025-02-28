@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ListView?>
+
+<VBox spacing="20" styleClass="content-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.updatePlanning">
+
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER">
+        <Text styleClass="view-header" text="Mise à jour du Planning" />
+    </HBox>
+
+    <!-- Formulaire de mise à jour -->
+    <VBox spacing="15" styleClass="form-container">
+        <HBox spacing="15">
+            <!-- Colonne Gauche -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Nom du Planning" />
+                <TextField fx:id="nom_tf" promptText="Entrez le nom du planning" />
+
+                <Label text="Date de création" />
+                <DatePicker fx:id="date_creation_tf" />
+            </VBox>
+
+            <!-- Colonne Droite -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Sélectionner les Événements" />
+                <ListView fx:id="eventListView" />
+            </VBox>
+        </HBox>
+
+        <!-- Message -->
+        <Label fx:id="messageLabel" styleClass="message-label" />
+
+        <!-- Boutons -->
+        <HBox alignment="TOP_CENTER">
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button onAction="#UpdatePlanning" styleClass="button-primary">
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="5">
+                            <Text fill="white" text="🔄" />
+                            <Text fill="white" text="Mettre à jour" />
+                        </HBox>
+                    </graphic>
+                </Button>
+                <Button onAction="#afficherPlanning" styleClass="button-primary">
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="5">
+                            <Text fill="white" text="👁️" />
+                            <Text fill="white" text="Afficher" />
+                        </HBox>
+                    </graphic>
+                </Button>
+            </HBox>
+        </HBox>
+    </VBox>
+</VBox>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="495.0" prefWidth="808.0" spacing="20" styleClass="content-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ShowEvent">
+
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER">
+        <Text styleClass="view-header" text="Liste des Événements" />
+    </HBox>
+
+       <!-- Formulaire de saisie -->
+    <VBox spacing="15" styleClass="form-container" />
+   <TextField fx:id="searchField" prefHeight="38.0" prefWidth="721.0" promptText="Search flights..." />
+    <!-- Column Headers -->
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-font-weight: bold; -fx-padding: 5; -fx-background-color: #f0f0f0;">
+        <Text text="Nom" wrappingWidth="100" />
+        <Text text="Description" wrappingWidth="200" />
+        <Text text="Lieu" wrappingWidth="100" />
+        <Text text="Date" wrappingWidth="100" />
+        <Text text="Durée" wrappingWidth="50" />
+        <Text text="Prix" wrappingWidth="50" />
+    </HBox>
+    <ListView fx:id="listEvent" editable="true" onMouseClicked="#handleEventSelection" prefHeight="200.0" prefWidth="200.0" />
+
+    <Button onAction="#goToUpdatePage" styleClass="button-primary">
+        <graphic>
+            <HBox alignment="CENTER" spacing="5">
+                <Text fill="white" text="✏" />
+                <Text fill="white" text="Modifier" />
+            </HBox>
+        </graphic>
+    </Button>
+
+    <Button onAction="#supprimerEvent" styleClass="button-danger">
+        <graphic>
+            <HBox alignment="CENTER" spacing="5">
+                <Text fill="white" text="🗑" />
+                <Text fill="white" text="Supprimer" />
+            </HBox>
+        </graphic>
+    </Button>
+
+    <Button onAction="#handleClear" styleClass="button-primary">
+        <graphic>
+            <HBox alignment="CENTER" spacing="5">
+                <Text fill="white" text="🔄" />
+                <Text fill="white" text="Réinitialiser" />
+            </HBox>
+        </graphic>
+    </Button>
+   <VBox layoutX="30.0" layoutY="82.0" spacing="15" styleClass="form-container" />
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+
+
+
+</VBox>
