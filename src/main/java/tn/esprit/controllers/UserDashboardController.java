@@ -2,6 +2,7 @@ package tn.esprit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,4 +31,22 @@ public class UserDashboardController {
     public void setUserInformation(String email) {
         label_welcome.setText("Bienvenue " + email + "!");
     }
+    @FXML
+    private void handleProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserProfile.fxml"));
+            Parent root = loader.load();
+
+            // Pass user data to profile controller
+            UserProfileController profileController = loader.getController();
+            profileController.setUser(SessionManager.getInstance().getCurrentUser());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

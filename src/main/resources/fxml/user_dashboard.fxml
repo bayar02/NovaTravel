@@ -9,12 +9,17 @@
 
 <AnchorPane prefHeight="689.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.UserDashboardController">
     <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/LOGO.png" />
-         </image>
-      </ImageView>
+        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icons/LOGO.png" />
+            </image>
+        </ImageView>
         <Label fx:id="label_welcome" style="-fx-font-size: 24px;" text="Bienvenue!" />
-        <Button onAction="#handleLogout" style="-fx-background-color: #ff760d; -fx-text-fill: white;" text="Déconnexion" />
+
+        <!-- Profile Button -->
+        <Button onAction="#handleProfile" style="-fx-background-color: #2980B9; -fx-text-fill: white;" text="Profil" />
+
+        <!-- Logout Button -->
+        <Button onAction="#handleLogout" style="-fx-background-color: #34495E; -fx-text-fill: white;" text="Déconnexion" />
     </VBox>
 </AnchorPane>

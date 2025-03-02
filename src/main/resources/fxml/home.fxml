@@ -16,7 +16,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="223.0">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="167.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/LOGO.png" />
                      </image>
@@ -33,7 +33,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="button_logout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="223.0" style="-fx-background-color: #ff760d;" text="Déconnexion" textFill="WHITE">
+                  <Button fx:id="button_logout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="223.0" style="-fx-background-color: #34495E;" text="Déconnexion" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

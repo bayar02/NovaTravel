@@ -267,4 +267,31 @@ public class ServiceUser implements IService<User> {
         
         return user;
     }
+    public void updateUser(User user) throws SQLException {
+        String query = "UPDATE user SET mail = ?, password = ?, cin = ?, nom = ?, prenom = ?, tel = ? WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, user.getMail());
+
+            // ✅ Hash password only if the user entered a new one
+            if (!user.getPassword().isEmpty()) {
+                String hashedPassword = SecurityUtil.hashPassword(user.getPassword());
+                statement.setString(2, hashedPassword);
+            } else {
+                statement.setString(2, user.getPassword()); // Keep the old password
+            }
+
+            statement.setString(3, user.getCin());
+            statement.setString(4, user.getNom());
+            statement.setString(5, user.getPrenom());
+            statement.setString(6, user.getTel());
+            statement.setInt(7, user.getId());
+
+            statement.executeUpdate();
+            System.out.println("✅ Profil mis à jour avec succès!");
+        }
+    }
+
+
+
 }

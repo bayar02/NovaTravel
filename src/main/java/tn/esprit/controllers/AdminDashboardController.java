@@ -140,7 +140,7 @@ public class AdminDashboardController implements Initializable {
                 "\nRole: " + user.getRole();
 
         // Notify the user about the update
-        adminController.notifyUserOfChanges(user, updatedInfo, false);  // false means it's an update, not deletion
+        adminController.notifyUserOfChanges(user, updatedInfo, false);
     }
 
 
@@ -166,6 +166,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void handleAddUser() {
         openUserForm2(null);
+
     }
 
     @FXML

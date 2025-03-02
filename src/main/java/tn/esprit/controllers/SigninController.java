@@ -11,9 +11,11 @@ import tn.esprit.entities.User;
 import tn.esprit.services.UserService;
 import tn.esprit.services.ValidationService;
 import tn.esprit.utils.SessionManager;
+import tn.esprit.utils.EncryptionUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 public class SigninController {
     @FXML
@@ -26,21 +28,40 @@ public class SigninController {
     private CheckBox rememberMe;
 
     private UserService userService;
+    private Preferences preferences;
 
     public SigninController() {
         userService = new UserService();
+        preferences = Preferences.userNodeForPackage(SigninController.class);
+    }
+
+    @FXML
+    public void initialize() {
+        loadSavedCredentials();
+    }
+
+    private void loadSavedCredentials() {
+        String savedEmail = preferences.get("email", "");
+        String savedPassword = preferences.get("password", "");
+        boolean isRemembered = preferences.getBoolean("rememberMe", false);
+
+        if (isRemembered && !savedEmail.isEmpty() && !savedPassword.isEmpty()) {
+            email.setText(savedEmail);
+            password.setText(EncryptionUtil.decrypt(savedPassword));
+            rememberMe.setSelected(true);
+        }
     }
 
     @FXML
     public void login(ActionEvent event) {
         String userEmail = email.getText().trim();
         String userPassword = password.getText().trim();
-        
+
         if (userEmail.isEmpty() || userPassword.isEmpty()) {
             showError("Veuillez remplir tous les champs");
             return;
         }
-        
+
         if (!ValidationService.isValidEmail(userEmail)) {
             showError("Format d'email invalide");
             return;
@@ -49,22 +70,30 @@ public class SigninController {
         try {
             User user = userService.authenticate(userEmail, userPassword);
             if (user != null) {
-                // Set the user in session
+                if (rememberMe.isSelected()) {
+                    preferences.put("email", userEmail);
+                    preferences.put("password", EncryptionUtil.encrypt(userPassword));
+                    preferences.putBoolean("rememberMe", true);
+                } else {
+                    preferences.remove("email");
+                    preferences.remove("password");
+                    preferences.putBoolean("rememberMe", false);
+                }
+
                 SessionManager.getInstance().setCurrentUser(user);
-                
-                // Navigate based on user role
+
                 String targetFxml = switch (user.getRole()) {
                     case ADMIN -> "fxml/acceuil_admin.fxml";
                     case REGULAR_USER -> "fxml/user_dashboard.fxml";
                     default -> "fxml/home.fxml";
                 };
-                
+
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/" + targetFxml));
                     Parent root = loader.load();
                     if (targetFxml.equals("fxml/user_dashboard.fxml")) {
                         UserDashboardController controller = loader.getController();
-                        controller.setUserInformation(user.getMail()); // Pass user email to UserDashboardController
+                        controller.setUserInformation(user.getMail());
                     }
                     Stage stage = (Stage) email.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -100,12 +129,12 @@ public class SigninController {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
     }
+
     @FXML
     private void openForgotPassword(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ForgotPassword.fxml"));
             Parent root = loader.load();
-
             Stage stage = new Stage();
             stage.setTitle("Mot de passe oublié");
             stage.setScene(new Scene(root));
@@ -114,4 +143,4 @@ public class SigninController {
             e.printStackTrace();
         }
     }
-} 
+}
