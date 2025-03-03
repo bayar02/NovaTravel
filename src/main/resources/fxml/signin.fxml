@@ -39,13 +39,20 @@
                <VBox spacing="10.0" styleClass="input-container">
                   <TextField fx:id="email" promptText="Email" styleClass="text-field" />
                   <PasswordField fx:id="password" promptText="Mot de passe" styleClass="text-field" />
-                  <CheckBox fx:id="rememberMe" mnemonicParsing="false" prefHeight="18.0" prefWidth="240.0" text="Se souvenir de moi" />
+                  <CheckBox fx:id="rememberMe" mnemonicParsing="false" text="Se souvenir de moi" />
                   <Label fx:id="errorLabel" styleClass="error-message" visible="false" />
                </VBox>
 
-               <HBox alignment="CENTER_LEFT" spacing="10" />
-
                <Button onAction="#login" styleClass="primary-button" text="Se Connecter" />
+
+               <HBox spacing="10" alignment="CENTER">
+                  <!-- Google Login Button -->
+                  <Button fx:id="googleLoginButton" onAction="#loginWithGoogle" text="Se connecter avec Google" />
+
+                  <!-- Facebook Login Button -->
+                  <Button fx:id="facebookLoginButton" onAction="#loginWithFacebook" text="Se connecter avec Facebook" />
+               </HBox>
+
                <Hyperlink fx:id="forgotPasswordLink" text="Mot de passe oublié ?" onAction="#openForgotPassword" underline="true">
                   <font>
                      <Font size="10.0" />
