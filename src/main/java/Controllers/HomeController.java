@@ -58,6 +58,19 @@ public class HomeController implements Initializable {
             e.printStackTrace(); // For debugging
         }
     }
+    @FXML
+    private void openChatBot(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chatbot.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("ChatBot");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GoToReclamations(); // Load Reclamation list by default

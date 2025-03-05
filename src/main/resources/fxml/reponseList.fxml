@@ -38,7 +38,6 @@
             </HBox>
             <HBox spacing="10" style="-fx-background-color: lightgray; -fx-padding: 5; -fx-font-weight: bold;">
                <children>
-                  <Text text="ID" wrappingWidth="100.0" />
                   <Text text="RECLAMATION" wrappingWidth="111.0" />
                   <Text text="MESSAGE" wrappingWidth="120">
                      <HBox.margin>

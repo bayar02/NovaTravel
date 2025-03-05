@@ -249,7 +249,7 @@ public class ReclamationController implements Initializable {
      */
 
     public void loadReclamations() throws SQLException {
-        int currentUserId = 2; // 🔥 Hardcoded user ID for testing
+        int currentUserId = 1; // 🔥 Hardcoded user ID for testing
 
         List<Reclamation> reclamations = reclamationService.afficherParUtilisateur(currentUserId);
         int column = 0;
@@ -280,6 +280,7 @@ public class ReclamationController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 
     @FXML

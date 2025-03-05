@@ -55,4 +55,6 @@
       <AnchorPane fx:id="contentPane" layoutX="223.0" layoutY="0" prefHeight="689.0" prefWidth="715.0" />
 
    </children>
+   <Button onAction="#openChatBot" styleClass="primary-button" text="Ouvrir Chatbot" />
+
 </AnchorPane>
