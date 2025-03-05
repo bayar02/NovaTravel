@@ -1,6 +1,7 @@
 package Controllers;
 
 import Entities.Reclamation;
+import Entities.User;
 import Services.ReclamationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,13 +42,21 @@ public class CardReclamationController implements Initializable {
     private ReclamationController parentController; // Reference to the main controller
 
     // Method to set data and link parent controller
+    // Method to set data and link parent controller
     public void setData(Reclamation reclamation, ReclamationController parentController) {
         this.reclamation = reclamation;
         this.parentController = parentController;
 
         type.setText(reclamation.getType());
         message.setText(reclamation.getMessage());
-        user.setText(String.valueOf(reclamation.getIdUser()));
+
+        // Fetch user information (replace with actual method to get User)
+        User userEntity = reclamationService.findUserById(reclamation.getIdUser());
+        if (userEntity != null) {
+            user.setText(userEntity.getNom()); // Display username instead of ID
+        } else {
+            user.setText("Unknown User"); // Fallback text
+        }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(reclamation.getDateReclamation());

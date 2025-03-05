@@ -9,6 +9,9 @@ public class User {
     private String tel;
     private String role;
 
+    public User() {}
+
+
     public User(int id, String nom, String prenom, String cin, String mail, String tel, String role) {
         this.id = id;
         this.nom = nom;
