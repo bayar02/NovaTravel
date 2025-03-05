@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 public class GoogleAuthService {
     private static final String CLIENT_ID = System.getenv("GOOGLE_CLIENT_ID");
     private static final String CLIENT_SECRET = System.getenv("GOOGLE_CLIENT_SECRET");
+
     private static final String CALLBACK_URL = "http://localhost:8080/callback"; // Change if needed
     private static final String SCOPE = "https://www.googleapis.com/auth/userinfo.profile"; // Permissions requested
 
