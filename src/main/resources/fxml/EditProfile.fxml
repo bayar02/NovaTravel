@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.UserProfile1Controller">
+
+    <VBox alignment="CENTER" layoutY="59.0" prefHeight="555.0" prefWidth="600.0" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0">
+
+        <!-- Profile Picture -->
+        <ImageView fx:id="profileImage" fitHeight="130.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-radius: 60px;">
+            <image>
+                <Image url="@../icons/LOGO.png" />
+            </image>
+        </ImageView>
+
+        <!-- User Full Name -->
+        <Label fx:id="fullNameLabel" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Nom Prénom" />
+
+        <!-- Email -->
+        <Label style="-fx-font-size: 14px; -fx-text-fill: #7F8C8D;" text="Email:" />
+        <Label fx:id="emailLabel" style="-fx-font-size: 16px; -fx-text-fill: #2C3E50;" text="user@example.com" />
+
+        <!-- CIN -->
+        <Label style="-fx-font-size: 14px; -fx-text-fill: #7F8C8D;" text="CIN:" />
+        <Label fx:id="cinLabel" style="-fx-font-size: 16px; -fx-text-fill: #2C3E50;" text="00000000" />
+
+        <!-- Téléphone -->
+        <Label style="-fx-font-size: 14px; -fx-text-fill: #7F8C8D;" text="Téléphone:" />
+        <Label fx:id="telLabel" style="-fx-font-size: 16px; -fx-text-fill: #2C3E50;" text="+216 12345678" />
+
+        <!-- Buttons -->
+        <HBox alignment="CENTER" prefHeight="104.0" prefWidth="471.0" spacing="20">
+            <Button onAction="#handleEditProfile" style="-fx-background-color: #2980B9; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px; -fx-border-radius: 5px;" text="Modifier Profil" />
+        </HBox>
+
+    </VBox>
+    <Button fx:id="backButton" layoutX="43.0" layoutY="31.0" onAction="#handleBack" text="← Back" />
+</AnchorPane>
