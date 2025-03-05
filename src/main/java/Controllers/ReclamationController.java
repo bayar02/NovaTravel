@@ -130,16 +130,25 @@ public class ReclamationController implements Initializable {
 
     @FXML
     void handleSearch(ActionEvent event) {
-        String searchText = searchField.getText().trim();
+        String searchText = searchField.getText().trim(); // Get the search text
+
+        if (searchText.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Champ de recherche vide", "Veuillez entrer du texte pour la recherche.");
+            return;
+        }
+
         try {
-            List<Reclamation> filteredList = reclamationService.searchByType(searchText);
-            updateReclamationCards(filteredList); // 🔥 Refresh cards
+            // Call the service to perform the search on multiple fields
+            List<Reclamation> filteredList = reclamationService.searchByFields(searchText);
+            updateReclamationCards(filteredList); // Update the UI with the filtered list
+
         } catch (SQLException e) {
-            e.printStackTrace(); // 🔥 Print the actual error in the console
+            e.printStackTrace(); // Log the error
             showAlert(Alert.AlertType.ERROR, "Erreur", "Une erreur est survenue lors de la recherche.\n" + e.getMessage());
         }
         System.out.println("Search input: " + searchText);
     }
+
 
 
     private void updateReclamationCards(List<Reclamation> reclamations) {
@@ -240,7 +249,7 @@ public class ReclamationController implements Initializable {
      */
 
     public void loadReclamations() throws SQLException {
-        int currentUserId = 1; // 🔥 Hardcoded user ID for testing
+        int currentUserId = 2; // 🔥 Hardcoded user ID for testing
 
         List<Reclamation> reclamations = reclamationService.afficherParUtilisateur(currentUserId);
         int column = 0;

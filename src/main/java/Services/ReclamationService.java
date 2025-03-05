@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Reclamation;
+import Entities.User;
 import Utils.MyDatabase;
 
 import java.sql.*;
@@ -164,6 +165,54 @@ public class ReclamationService implements IReclamation<Reclamation> {
         return "Réclamation introuvable"; // Return this if no message found
     }
 
+    public List<Reclamation> searchByFields(String searchText) throws SQLException {
+        List<Reclamation> filteredList = new ArrayList<>();
+        String query = "SELECT * FROM reclamation WHERE id_user LIKE ? OR type LIKE ? OR message LIKE ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            String searchPattern = "%" + searchText + "%"; // Supports partial matching
+
+            // Set parameters for the query to filter by id_user, type, or message
+            stmt.setString(1, searchPattern); // Search in id_user
+            stmt.setString(2, searchPattern); // Search in type
+            stmt.setString(3, searchPattern); // Search in message
+
+            System.out.println("Executing query: " + stmt.toString()); // Debugging line
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Reclamation reclamation = new Reclamation(
+                        rs.getInt("id"),
+                        rs.getInt("id_user"),
+                        rs.getDate("date_reclamation"),
+                        rs.getString("type"),
+                        rs.getString("message")
+                );
+                filteredList.add(reclamation);
+            }
+        }
+        return filteredList;
+    }
+
+    public User findUserById(int userId) {
+        User user = null;
+        String query = "SELECT * FROM user WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getInt(1));
+                user.setNom(resultSet.getString(2)); // Assuming column name is "username"
+                user.setPrenom(resultSet.getString(3)); // Example: other fields
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
 }
