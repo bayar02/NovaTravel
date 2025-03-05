@@ -43,6 +43,7 @@ public class SigninController {
     private final Preferences preferences;
     private final GoogleAuthService googleAuthService;
     private final ServiceUser serviceUser;
+
     public SigninController() {
         userService = new UserService();
         preferences = Preferences.userNodeForPackage(SigninController.class);
@@ -159,8 +160,6 @@ public class SigninController {
             e.printStackTrace();
         }
     }
-    public void loginWithFacebook() {
-    }
 
     private void openAuthWindow(String url, String title) {
         try {
@@ -169,8 +168,7 @@ public class SigninController {
 
             // Listen for URL changes in the WebView
             authWebView.getEngine().locationProperty().addListener((observable, oldValue, newValue) -> {
-                // Replace "YOUR_REDIRECT_URI" with your actual redirect URI
-                if(newValue.startsWith("http://localhost:8080/callback")) {
+                if (newValue.startsWith("http://localhost:8080/callback")) {
                     // Extract the 'code' parameter from the URL
                     String authCode = extractCodeFromUrl(newValue);
                     // Close the authentication window
@@ -191,11 +189,8 @@ public class SigninController {
         }
     }
 
-    // Helper method to extract the "code" parameter from the URL
-
     private String extractCodeFromUrl(String url) {
         try {
-            System.out.println("URL de redirection : " + url); // Log pour vérifier l'URL
             java.net.URL urlObj = new java.net.URL(url);
             String query = urlObj.getQuery();
             if (query != null) {
@@ -204,7 +199,6 @@ public class SigninController {
                     if (param.startsWith("code=")) {
                         String authCode = param.substring("code=".length());
                         authCode = URLDecoder.decode(authCode, StandardCharsets.UTF_8); // Décoder le code
-                        System.out.println("Code d'autorisation extrait et décodé : " + authCode); // Log pour vérifier le code
                         return authCode;
                     }
                 }
@@ -214,7 +208,6 @@ public class SigninController {
         }
         return null;
     }
-
 
     public void handleGoogleCallback(String authCode) {
         try {
@@ -232,61 +225,52 @@ public class SigninController {
 
             // Récupérer les informations de l'utilisateur
             String userInfoJson = googleAuthService.getUserProfile(accessToken);
-            System.out.println("Réponse JSON de Google : " + userInfoJson); // Log pour inspecter la réponse JSON
-
             JsonObject userJson = JsonParser.parseString(userInfoJson).getAsJsonObject();
 
-            // Vérifier que les champs requis existent
-            if (!userJson.has("given_name") || !userJson.has("family_name")) {
-                showError("Erreur : Réponse JSON invalide. Champs manquants.");
+            // Extract fields from the Google response
+            String givenName = userJson.has("given_name") ? userJson.get("given_name").getAsString() : "N/A";
+            String familyName = userJson.has("family_name") ? userJson.get("family_name").getAsString() : "N/A";
+            String email = userJson.has("email") ? userJson.get("email").getAsString() : givenName.toLowerCase() + "." + familyName.toLowerCase() + "@google.com";
+            String picture = userJson.has("picture") ? userJson.get("picture").getAsString() : null;
+
+            // Check for missing required data
+            if (givenName.equals("N/A") || familyName.equals("N/A") || email.equals("N/A")) {
+                showError("Erreur : Données utilisateur manquantes.");
                 return;
             }
 
-            // Extraire les données de la réponse JSON
-            String givenName = userJson.get("given_name").getAsString(); // Prénom
-            String familyName = userJson.get("family_name").getAsString(); // Nom
-            String email = userJson.has("email") ? userJson.get("email").getAsString() : givenName.toLowerCase() + "." + familyName.toLowerCase() + "@google.com"; // E-mail
-            String picture = userJson.has("picture") ? userJson.get("picture").getAsString() : null; // Photo de profil
+            // Handle missing phone and CIN (using placeholders for now)
+            String phone = "29679900"; // Placeholder for phone number
+            String cin = "09774466";   // Placeholder for CIN
 
-            // Vérifier si les données sont valides
-            if (givenName == null || givenName.isEmpty() || familyName == null || familyName.isEmpty()) {
-                showError("Erreur : Prénom ou nom manquant.");
-                return;
-            }
-
-            if (email == null || email.isEmpty() || !ValidationService.isValidEmail(email)) {
-                showError("Erreur : E-mail invalide.");
-                return;
-            }
-
-            // Vérifier si l'utilisateur existe déjà
+            // Check if the user exists
             User user = serviceUser.getUserByEmail(email);
             if (user == null) {
-                // Créer un nouvel utilisateur avec les données de Google
+                // Create a new user
                 user = new User();
-                user.setNom(familyName); // Nom de famille
-                user.setPrenom(givenName); // Prénom
-                user.setMail(email); // E-mail
-                user.setCin("N/A"); // Valeur par défaut pour le CIN
-                user.setTel("N/A"); // Valeur par défaut pour le téléphone
-                user.setPassword("N/A"); // Valeur par défaut pour le mot de passe
-                user.setRole(User.Role.REGULAR_USER); // Rôle par défaut
+                user.setNom(familyName);
+                user.setPrenom(givenName);
+                user.setMail(email);
+                user.setCin(cin); // Set CIN to placeholder
+                user.setTel(phone); // Set phone to placeholder
+                user.setPassword(EncryptionUtil.encrypt(generateRandomPassword())); // Use a generated password
+                user.setRole(User.Role.REGULAR_USER); // Set a default role
 
-                // Ajouter l'utilisateur à la base de données
+
+                // Save the user to the database
                 try {
                     serviceUser.ajouter(user);
-                    System.out.println("Utilisateur ajouté avec succès : " + user.getMail());
                 } catch (Exception e) {
-                    System.err.println("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage());
+                    showError("Erreur lors de l'ajout de l'utilisateur.");
                     e.printStackTrace();
-                    showError("Erreur : Données utilisateur invalides.");
                     return;
                 }
             }
 
-            // Naviguer vers le tableau de bord
+            // Set the current user in the session and navigate to the dashboard
             SessionManager.getInstance().setCurrentUser(user);
             navigateToDashboard(user);
+
         } catch (IOException | ExecutionException | InterruptedException e) {
             showError("Erreur lors de la connexion avec Google : " + e.getMessage());
             e.printStackTrace();
@@ -299,4 +283,8 @@ public class SigninController {
         }
     }
 
+    private String generateRandomPassword() {
+        // This is just an example, you might want to generate a stronger password
+        return "defaultPassword123";
+    }
 }

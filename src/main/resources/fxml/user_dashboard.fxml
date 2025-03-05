@@ -1,25 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="689.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.UserDashboardController">
-    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icons/LOGO.png" />
-            </image>
-        </ImageView>
-        <Label fx:id="label_welcome" style="-fx-font-size: 24px;" text="Bienvenue!" />
 
-        <!-- Profile Button -->
-        <Button onAction="#handleProfile" style="-fx-background-color: #2980B9; -fx-text-fill: white;" text="Profil" />
+    <!-- Horizontal Layout -->
+    <HBox prefHeight="689.0" prefWidth="938.0">
 
-        <!-- Logout Button -->
-        <Button onAction="#handleLogout" style="-fx-background-color: #34495E; -fx-text-fill: white;" text="Déconnexion" />
-    </VBox>
+        <!-- Sidebar Navigation -->
+        <VBox prefHeight="569.0" prefWidth="250.0" spacing="10.0" style="-fx-background-color: #34495E; -fx-padding: 20px; -fx-alignment: CENTER;">
+
+            <!-- Navigation Buttons (Consistent Styling) -->
+            <Button fx:id="btnProfile" onAction="#handleProfile" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14px;" text="Profil" />
+            <Button fx:id="btnReserverVol" onAction="#handleReserverVol" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14px;" text="Réserver Vol" />
+            <Button fx:id="btnReserverHebergement" onAction="#handleReserverHebergement" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14px;" text="Réserver Hébergement" />
+            <Button fx:id="btnConsulterEvenement" onAction="#handleConsulterEvenement" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14px;" text="Consulter Événement" />
+            <Button fx:id="btnReclamation" onAction="#handleReclamation" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14px;" text="Réclamation" />
+
+            <!-- Logout Button -->
+            <Button fx:id="btnLogout" onAction="#handleLogout" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14px; -fx-background-color: #E74C3C; -fx-text-fill: white;" text="Déconnexion" />
+
+            <!-- Padding for proper spacing -->
+            <padding>
+                <Insets bottom="10.0" left="10.0" top="10.0" />
+            </padding>
+        </VBox>
+
+        <!-- Main Content -->
+        <VBox alignment="CENTER" prefWidth="688.0" spacing="20" style="-fx-padding: 50px;">
+
+            <!-- Profile Picture -->
+            <ImageView fitHeight="369.0" fitWidth="490.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../icons/LOGO.png" />
+                </image>
+            </ImageView>
+            <Label fx:id="label_welcome" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Bienvenue!" />
+        </VBox>
+
+    </HBox>
+
 </AnchorPane>

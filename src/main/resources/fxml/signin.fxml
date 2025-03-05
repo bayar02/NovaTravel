@@ -49,8 +49,6 @@
                   <!-- Google Login Button -->
                   <Button fx:id="googleLoginButton" onAction="#loginWithGoogle" text="Se connecter avec Google" />
 
-                  <!-- Facebook Login Button -->
-                  <Button fx:id="facebookLoginButton" onAction="#loginWithFacebook" text="Se connecter avec Facebook" />
                </HBox>
 
                <Hyperlink fx:id="forgotPasswordLink" text="Mot de passe oublié ?" onAction="#openForgotPassword" underline="true">

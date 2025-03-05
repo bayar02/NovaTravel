@@ -34,11 +34,11 @@ public class UserDashboardController {
     @FXML
     private void handleProfile(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EditProfile.fxml"));
             Parent root = loader.load();
 
             // Pass user data to profile controller
-            UserProfileController profileController = loader.getController();
+            UserProfile1Controller profileController = loader.getController();
             profileController.setUser(SessionManager.getInstance().getCurrentUser());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -49,4 +49,16 @@ public class UserDashboardController {
         }
     }
 
+    public void handleConsulterEvenement(ActionEvent actionEvent) {
+    }
+
+    public void handleReserverVol(ActionEvent actionEvent) {
+
+    }
+
+    public void handleReserverHebergement(ActionEvent actionEvent) {
+    }
+
+    public void handleReclamation(ActionEvent actionEvent) {
+    }
 }
