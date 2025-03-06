@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.monji.controller.VolController"
+      spacing="20" styleClass="content-container">
+
+    <stylesheets>
+        <URL value="@../icons/style.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER">
+        <Text styleClass="view-header" text="Flights Management"/>
+    </HBox>
+
+    <!-- Search Bar -->
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="searchField" promptText="Search flights..." HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets right="10"/>
+            </HBox.margin>
+        </TextField>
+        <ComboBox fx:id="searchTypeComboBox" promptText="Search by...">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Company"/>
+                    <String fx:value="Destination"/>
+                    <String fx:value="Departure"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <ComboBox fx:id="sortByComboBox" promptText="Sort by...">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Price (Low to High)"/>
+                    <String fx:value="Price (High to Low)"/>
+                    <String fx:value="Departure Date"/>
+                    <String fx:value="Company"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button text="Sort" styleClass="button-primary" onAction="#handleSort"/>
+        <Button text="Stream Stats" styleClass="button-info" onAction="#handleStreamStats"/>
+    </HBox>
+
+    <!-- CRUD Form -->
+    <VBox styleClass="form-container" spacing="15">
+        <HBox spacing="15">
+            <!-- Left Column -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Departure Airport"/>
+                <TextField fx:id="departureAirportField" promptText="Enter departure airport"/>
+
+                <Label text="Departure Date"/>
+                <DatePicker fx:id="departureDatePicker" promptText="Select departure date"/>
+
+                <Label text="Price"/>
+                <TextField fx:id="priceField" promptText="Enter price"/>
+
+                <Label text="Company"/>
+                <TextField fx:id="compagnieField" promptText="Enter company name"/>
+            </VBox>
+
+            <!-- Right Column -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Destination Airport"/>
+                <TextField fx:id="destinationField" promptText="Enter destination airport"/>
+
+                <Label text="Arrival Date"/>
+                <DatePicker fx:id="arrivalDatePicker" promptText="Select arrival date"/>
+            </VBox>
+        </HBox>
+
+        <!-- Buttons -->
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button styleClass="button-primary" onAction="#handleAdd">
+                <graphic>
+                    <HBox spacing="5" alignment="CENTER">
+                        <Label text="➕" style="-fx-font-size: 14; -fx-text-fill: white;"/>
+                        <Text fill="white" text="Add Flight"/>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <Button styleClass="button-primary" onAction="#handleUpdate">
+                <graphic>
+                    <HBox spacing="5" alignment="CENTER">
+                        <Label text="✏️" style="-fx-font-size: 14; -fx-text-fill: white;"/>
+                        <Text fill="white" text="Update"/>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <Button styleClass="button-danger" onAction="#handleDelete">
+                <graphic>
+                    <HBox spacing="5" alignment="CENTER">
+                        <Label text="🗑️" style="-fx-font-size: 14; -fx-text-fill: white;"/>
+                        <Text fill="white" text="Delete"/>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <Button styleClass="button-primary" onAction="#handleClear">
+                <graphic>
+                    <HBox spacing="5" alignment="CENTER">
+                        <Label text="🔄" style="-fx-font-size: 14; -fx-text-fill: white;"/>
+                        <Text fill="white" text="Clear"/>
+                    </HBox>
+                </graphic>
+            </Button>
+        </HBox>
+    </VBox>
+
+    <!-- List View -->
+    <ListView fx:id="flightListView" VBox.vgrow="ALWAYS" styleClass="flight-list-view"/>
+
+    <!-- Navigation Button -->
+    <HBox alignment="CENTER">
+        <Button styleClass="button-primary" text="🔎 Search Airport" onAction="#goToSearchAirport"/>
+    </HBox>
+
+</VBox>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.monji.controller.ReseachAireport"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml" >
+
+        <Label text="🔍 Search Airport" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <TextField fx:id="airportInput" promptText="Enter airport name..." maxWidth="300">
+            <VBox.margin>
+                <Insets top="5"/>
+            </VBox.margin>
+        </TextField>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="searchButton" text="Search" onAction="#searchAirport"
+                    style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-padding: 8 15; -fx-font-size: 14px;"/>
+
+            <Button fx:id="clearButton" text="Clear" onAction="#clearFields"
+                    style="-fx-background-color: #E81123; -fx-text-fill: white; -fx-padding: 8 15; -fx-font-size: 14px;"/>
+        </HBox>
+
+        <TextArea fx:id="apiOutput" editable="false" wrapText="true" prefHeight="200" maxWidth="400"
+                  style="-fx-font-size: 14px; -fx-padding: 10px; -fx-border-color: #ccc; -fx-background-radius: 8px;"/>
+    </VBox>
+
+
+</AnchorPane>

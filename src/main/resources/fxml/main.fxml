@@ -1,316 +1,69 @@
-
-// Modified at 2025-03-06 06:30:48.703431
-
-// Modified at 2025-03-06 06:30:48.893912
-
-// Modified at 2025-03-06 06:30:49.079665
-
-// Modified at 2025-03-06 06:30:50.018669
-
-// Modified at 2025-03-06 06:30:50.214736
-
-// Modified at 2025-03-06 06:30:51.207148
-
-// Modified at 2025-03-06 06:30:51.402240
-
-// Modified at 2025-03-06 06:30:52.336648
-
-// Modified at 2025-03-06 06:30:52.545368
-
-// Modified at 2025-03-06 06:30:52.739944
-
-// Modified at 2025-03-06 06:30:53.653978
-
-// Modified at 2025-03-06 06:30:53.850310
-
-// Modified at 2025-03-06 06:30:54.043571
-
-// Modified at 2025-03-06 06:30:54.978675
-
-// Modified at 2025-03-06 06:30:55.914744
-
-// Modified at 2025-03-06 06:30:56.130901
-
-// Modified at 2025-03-06 06:30:56.346325
-
-// Modified at 2025-03-06 06:31:00.687712
-
-// Modified at 2025-03-06 06:31:00.882790
-
-// Modified at 2025-03-06 06:31:01.087143
-
-// Modified at 2025-03-06 06:31:02.017029
-
-// Modified at 2025-03-06 06:31:02.207627
-
-// Modified at 2025-03-06 06:31:03.136872
-
-// Modified at 2025-03-06 06:31:03.354249
-
-// Modified at 2025-03-06 06:31:04.295556
-
-// Modified at 2025-03-06 06:31:04.521998
-
-// Modified at 2025-03-06 06:31:04.721391
-
-// Modified at 2025-03-06 06:31:05.665615
-
-// Modified at 2025-03-06 06:31:05.860725
-
-// Modified at 2025-03-06 06:31:06.056495
-
-// Modified at 2025-03-06 06:31:06.955735
-
-// Modified at 2025-03-06 06:31:07.910852
-
-// Modified at 2025-03-06 06:31:08.106432
-
-// Modified at 2025-03-06 06:31:09.005518
-
-// Modified at 2025-03-06 06:31:09.920971
-
-// Modified at 2025-03-06 06:31:10.882952
-
-// Modified at 2025-03-06 06:31:11.078422
-
-// Modified at 2025-03-06 06:31:12.020819
-
-// Modified at 2025-03-06 06:31:12.214518
-
-// Modified at 2025-03-06 06:31:12.405570
-
-// Modified at 2025-03-06 06:31:13.326221
-
-// Modified at 2025-03-06 06:31:13.521951
-
-// Modified at 2025-03-06 06:31:13.713931
-
-// Modified at 2025-03-06 06:31:14.618330
-
-// Modified at 2025-03-06 06:31:15.612667
-
-// Modified at 2025-03-06 06:31:15.811705
-
-// Modified at 2025-03-06 06:31:16.778109
-
-// Modified at 2025-03-06 06:31:17.684497
-
-// Modified at 2025-03-06 06:31:17.892954
-
-// Modified at 2025-03-06 06:31:18.094600
-
-// Modified at 2025-03-06 06:31:19.058893
-
-// Modified at 2025-03-06 06:31:19.991304
-
-// Modified at 2025-03-06 06:32:06.710445
-
-// Modified at 2025-03-06 06:32:08.828505
-
-// Modified at 2025-03-06 06:32:09.042970
-
-// Modified at 2025-03-06 06:32:09.241492
-
-// Modified at 2025-03-06 06:32:11.165690
-
-// Modified at 2025-03-06 06:32:11.377876
-
-// Modified at 2025-03-06 06:32:15.329825
-
-// Modified at 2025-03-06 06:32:15.539293
-
-// Modified at 2025-03-06 06:32:15.735808
-
-// Modified at 2025-03-06 06:32:17.646104
-
-// Modified at 2025-03-06 06:32:17.844572
-
-// Modified at 2025-03-06 06:32:18.049026
-
-// Modified at 2025-03-06 06:32:20.003506
-
-// Modified at 2025-03-06 06:32:20.204495
-
-// Modified at 2025-03-06 06:32:22.122200
-
-// Modified at 2025-03-06 06:32:24.060463
-
-// Modified at 2025-03-06 06:32:24.266410
-
-// Modified at 2025-03-06 06:32:24.469600
-
-// Modified at 2025-03-06 06:32:26.439390
-
-// Modified at 2025-03-06 06:32:26.642772
-
-// Modified at 2025-03-06 06:32:28.530676
-
-// Modified at 2025-03-06 06:32:28.743748
-
-// Modified at 2025-03-06 06:32:28.945242
-
-// Modified at 2025-03-06 06:32:30.894626
-
-// Modified at 2025-03-06 06:32:31.109888
-
-// Modified at 2025-03-06 06:32:32.995594
-
-// Modified at 2025-03-06 06:32:34.910357
-
-// Modified at 2025-03-06 06:32:35.110346
-
-// Modified at 2025-03-06 06:32:35.312343
-
-// Modified at 2025-03-06 06:32:37.210221
-
-// Modified at 2025-03-06 06:32:39.150649
-
-// Modified at 2025-03-06 06:32:41.055281
-
-// Modified at 2025-03-06 06:32:41.246863
-
-// Modified at 2025-03-06 06:32:41.440431
-
-// Modified at 2025-03-06 06:32:43.345307
-
-// Modified at 2025-03-06 06:32:45.229533
-
-// Modified at 2025-03-06 06:32:47.163930
-
-// Modified at 2025-03-06 06:32:47.362097
-
-// Modified at 2025-03-06 06:32:49.240431
-
-// Modified at 2025-03-06 06:32:51.152382
-
-// Modified at 2025-03-06 06:32:51.350782
-
-// Modified at 2025-03-06 06:32:51.534870
-
-// Modified at 2025-03-06 06:32:53.505412
-
-// Modified at 2025-03-06 06:32:53.800623
-
-// Modified at 2025-03-06 06:32:53.998094
-
-// Modified at 2025-03-06 06:32:55.894500
-
-// Modified at 2025-03-06 06:32:56.085845
-
-// Modified at 2025-03-06 06:33:23.098110
-
-// Modified at 2025-03-06 06:33:23.299900
-
-// Modified at 2025-03-06 06:33:23.493615
-
-// Modified at 2025-03-06 06:33:25.602268
-
-// Modified at 2025-03-06 06:33:25.794567
-
-// Modified at 2025-03-06 06:33:27.702525
-
-// Modified at 2025-03-06 06:33:27.892199
-
-// Modified at 2025-03-06 06:33:28.073903
-
-// Modified at 2025-03-06 06:33:30.026326
-
-// Modified at 2025-03-06 06:33:30.222369
-
-// Modified at 2025-03-06 06:33:30.420558
-
-// Modified at 2025-03-06 06:33:32.345905
-
-// Modified at 2025-03-06 06:33:32.543489
-
-// Modified at 2025-03-06 06:33:32.735848
-
-// Modified at 2025-03-06 06:33:34.664730
-
-// Modified at 2025-03-06 06:34:12.834939
-
-// Modified at 2025-03-06 06:34:13.040746
-
-// Modified at 2025-03-06 06:34:28.172994
-
-// Modified at 2025-03-06 06:34:33.145630
-
-// Modified at 2025-03-06 06:34:33.348110
-
-// Modified at 2025-03-06 06:34:33.535164
-
-// Modified at 2025-03-06 06:34:37.155443
-
-// Modified at 2025-03-06 06:34:37.361391
-
-// Modified at 2025-03-06 06:34:37.546873
-
-// Modified at 2025-03-06 06:34:41.166867
-
-// Modified at 2025-03-06 06:34:41.362935
-
-// Modified at 2025-03-06 06:34:41.566751
-
-// Modified at 2025-03-06 06:34:45.443853
-
-// Modified at 2025-03-06 06:34:45.630354
-
-// Modified at 2025-03-06 06:34:49.160696
-
-// Modified at 2025-03-06 06:34:52.914633
-
-// Modified at 2025-03-06 06:34:56.843396
-
-// Modified at 2025-03-06 06:35:00.414849
-
-// Modified at 2025-03-06 06:35:00.610124
-
-// Modified at 2025-03-06 06:35:04.503587
-
-// Modified at 2025-03-06 06:35:04.695484
-
-// Modified at 2025-03-06 06:35:08.493114
-
-// Modified at 2025-03-06 06:35:08.696597
-
-// Modified at 2025-03-06 06:35:12.469690
-
-// Modified at 2025-03-06 06:35:12.663706
-
-// Modified at 2025-03-06 06:35:16.498310
-
-// Modified at 2025-03-06 06:35:20.098204
-
-// Modified at 2025-03-06 06:35:23.648267
-
-// Modified at 2025-03-06 06:35:27.243047
-
-// Modified at 2025-03-06 06:35:27.431468
-
-// Modified at 2025-03-06 06:35:27.621353
-
-// Modified at 2025-03-06 06:35:31.386621
-
-// Modified at 2025-03-06 06:35:31.579106
-
-// Modified at 2025-03-06 06:35:31.773585
-
-// Modified at 2025-03-06 06:35:35.272947
-
-// Modified at 2025-03-06 06:35:35.466745
-
-// Modified at 2025-03-06 06:35:39.155605
-
-// Modified at 2025-03-06 06:35:42.906184
-
-// Modified at 2025-03-06 06:35:43.101842
-
-// Modified at 2025-03-06 06:35:46.573553
-
-// Modified at 2025-03-06 06:35:50.322317
-
-// Modified at 2025-03-06 06:35:50.539056
-
-// Modified at 2025-03-06 06:35:50.725684
-
-// Modified at 2025-03-06 06:35:54.815999
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f4f4f4;" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.monji.controller.MainController">
+
+    <left>
+        <VBox prefWidth="200" spacing="10" styleClass="sidebar">
+            <padding>
+                <Insets bottom="20" left="10" right="10" top="20" />
+            </padding>
+
+            <!-- Logo and Title Area -->
+            <VBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fitHeight="50.0" fitWidth="150.0" preserveRatio="true">
+                    <Image url="@../icons/LOGO.png" />
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+                </ImageView>
+                <Text styleClass="sidebar-title" text="Nova Travel" textAlignment="CENTER" translateX="10.0" />
+            </VBox>
+
+            <Separator styleClass="sidebar-separator" />
+
+            <!-- Navigation Area -->
+            <VBox spacing="5" VBox.vgrow="ALWAYS">
+                <Button maxWidth="Infinity" onAction="#showFlights" styleClass="sidebar-button">
+                    <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label style="-fx-text-fill: white; -fx-font-size: 16;" text="✈" />
+                            <Text styleClass="button-text" text="Flights Management" />
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button maxWidth="Infinity" onAction="#showReservations" styleClass="sidebar-button">
+                    <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label style="-fx-text-fill: white; -fx-font-size: 16;" text="🎫" />
+                            <Text styleClass="button-text" text="Reservations" />
+                        </HBox>
+                    </graphic>
+                </Button>
+            </VBox>
+
+            <!-- Footer Area -->
+            <VBox alignment="BOTTOM_CENTER">
+                <Text styleClass="sidebar-footer" text="© 2024 Nova Travel" />
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <!-- Content will be loaded here dynamically -->
+        </StackPane>
+    </center>
+</BorderPane>

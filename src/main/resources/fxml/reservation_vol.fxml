@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.monji.controller.ReservationVolController"
+      spacing="20" styleClass="content-container">
+
+    <stylesheets>
+        <URL value="@../icons/style.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER">
+        <Text styleClass="view-header" text="Flight Reservations"/>
+    </HBox>
+
+    <!-- Search and Sort Bar -->
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search..." HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="searchTypeComboBox" promptText="Search by...">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="User"/>
+                    <String fx:value="Flight"/>
+                    <String fx:value="Class"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <ComboBox fx:id="sortByComboBox" promptText="Sort by...">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Price (Low to High)"/>
+                    <String fx:value="Price (High to Low)"/>
+                    <String fx:value="Number of Tickets"/>
+                    <String fx:value="Class"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button text="Sort" styleClass="button-primary" onAction="#handleSort"/>
+        <Button text="Stream Stats" styleClass="button-info" onAction="#handleStreamStats"/>
+    </HBox>
+
+    <!-- List View -->
+    <ListView fx:id="reservationListView" VBox.vgrow="ALWAYS" styleClass="reservation-list-view"/>
+
+    <!-- Form Container -->
+    <VBox styleClass="form-container" spacing="15">
+        <HBox spacing="15">
+            <!-- Left Column -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="User"/>
+                <ComboBox fx:id="userComboBox" maxWidth="Infinity" promptText="Select user"/>
+
+                <Label text="Flight"/>
+                <ComboBox fx:id="flightComboBox" maxWidth="Infinity" promptText="Select flight"/>
+            </VBox>
+
+            <!-- Right Column -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Class"/>
+                <ComboBox fx:id="classComboBox" maxWidth="Infinity" promptText="Select class">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Economy"/>
+                            <String fx:value="Business"/>
+                            <String fx:value="First Class"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Label text="Number of Tickets"/>
+                <TextField fx:id="ticketsField" promptText="Enter number of tickets"/>
+
+                <Label text="Total Price"/>
+                <TextField fx:id="totalPriceField" promptText="Total price" disable="true"/>
+            </VBox>
+        </HBox>
+
+        <!-- Message Label -->
+        <Label fx:id="messageLabel" styleClass="message-label"/>
+
+        <!-- Buttons -->
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Add Reservation" styleClass="button-primary" onAction="#handleAdd"/>
+            <Button text="Update" styleClass="button-primary" onAction="#handleUpdate"/>
+            <Button text="Delete" styleClass="button-danger" onAction="#handleDelete"/>
+            <Button text="Clear" styleClass="button-secondary" onAction="#handleClear"/>
+            <Button text="Aircraft Info" styleClass="button-info" onAction="#handleAircraftApiPopup"/>
+        </HBox>
+    </VBox>
+</VBox>
