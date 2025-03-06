@@ -15,7 +15,7 @@ public class ReservationVol {
         this.idUser = idUser;
         this.idVol = idVol;
         this.classe = classe;
-        this.nbBillets = nbBillets;                                                                                                                                          
+        this.nbBillets = nbBillets;
     }
 
     // Getters and Setters

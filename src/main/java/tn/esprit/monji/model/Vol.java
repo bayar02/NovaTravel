@@ -11,7 +11,7 @@ public class Vol {
     private Date dateDepart;
     private Date dateArrivee;
     private double prix;
-
+                                              
     // Constructors
     public Vol() {}
 
