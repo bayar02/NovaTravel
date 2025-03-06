@@ -4,7 +4,7 @@ public class ReservationVol {
     private int id;
     private int idUser;
     private int idVol;
-    private String classe;        
+    private String classe;
     private int nbBillets;
 
     // Constructors
@@ -15,7 +15,7 @@ public class ReservationVol {
         this.idUser = idUser;
         this.idVol = idVol;
         this.classe = classe;
-        this.nbBillets = nbBillets;
+        this.nbBillets = nbBillets;                                                                                                                                          
     }
 
     // Getters and Setters
