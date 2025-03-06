@@ -11,12 +11,9 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import static com.github.scribejava.core.model.OAuthConstants.CLIENT_ID;
-import static com.github.scribejava.core.model.OAuthConstants.CLIENT_SECRET;
-
 public class GoogleAuthService {
-    private String clientId = System.getenv("GOOGLE_OAUTH_CLIENT_ID");
-    private String clientSecret = System.getenv("GOOGLE_OAUTH_CLIENT_SECRET");
+    private static final String CLIENT_ID = "461955083842-9gvj3rut34de2bijpcasjq5isa4eb21i.apps.googleusercontent.com";
+    private static final String CLIENT_SECRET = "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";
     private static final String CALLBACK_URL = "http://localhost:8080/callback"; // Change if needed
     private static final String SCOPE = "https://www.googleapis.com/auth/userinfo.profile"; // Permissions requested
 
