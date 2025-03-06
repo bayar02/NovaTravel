@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import tn.esprit.utils.SessionManager;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -44,8 +46,21 @@ public class AcceuilAdmin {
     }
 
     @FXML
-    private void goToProfil() {
-        loadPage("dashboard.fxml");
+    private void goToProfil(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EditProfile.fxml"));
+            Parent root = loader.load();
+
+            // Pass user data to profile controller
+            UserProfile1Controller profileController = loader.getController();
+            profileController.setUser(SessionManager.getInstance().getCurrentUser());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
